@@ -470,7 +470,7 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
         private void setViewsColor(int position, float offset) {
             int backgroundColor = getBackgroundEvaluatedColor(position, offset);
             viewPager.setBackgroundColor(backgroundColor);
-            messageButton.setTextColor(backgroundColor);
+            messageButton.setTextColor(Color.WHITE);
 
             int buttonsColor = getButtonsEvaluatedColor(position, offset);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
