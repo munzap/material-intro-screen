@@ -2,6 +2,7 @@ package agency.tango.materialintroscreen;
 
 import android.animation.ArgbEvaluator;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -459,7 +460,7 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
                 setViewsColor(position, offset);
             } else if (adapter.getCount() == 1 || isOnLastSlide(position, offset)) {
                 viewPager.setBackgroundColor(getBackgroundColor(position));
-                messageButton.setTextColor(getBackgroundColor(position));
+                messageButton.setTextColor(Color.WHITE);
                 pageIndicator.setPageIndicatorColor(getButtonsColor(position));
 
                 tintButtons(ColorStateList.valueOf(getButtonsColor(position)));
