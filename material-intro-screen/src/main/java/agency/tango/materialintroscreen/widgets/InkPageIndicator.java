@@ -55,7 +55,7 @@ public class InkPageIndicator extends View
     private static final float INVALID_FRACTION = -1f;
     private static final float MINIMAL_REVEAL = 0.00001f;
 
-    private final Paint selectedPaint;
+    private Paint selectedPaint;
     private final Path unselectedDotPath;
     private final Path unselectedDotLeftPath;
     private final Path unselectedDotRightPath;
@@ -76,6 +76,7 @@ public class InkPageIndicator extends View
     private int gap;
     private long animDuration;
     private int unselectedColour;
+    private int selectedColour;
 
     // derived from attributes
     private float dotRadius;
@@ -141,7 +142,7 @@ public class InkPageIndicator extends View
         unselectedColour = typedArray
                 .getColor(R.styleable.mis_InkPageIndicator_mis_pageIndicatorColor,
                         DEFAULT_UNSELECTED_COLOUR);
-        int selectedColour = typedArray
+        selectedColour = typedArray
                 .getColor(R.styleable.mis_InkPageIndicator_mis_currentPageIndicatorColor,
                         DEFAULT_SELECTED_COLOUR);
         typedArray.recycle();
@@ -672,6 +673,12 @@ public class InkPageIndicator extends View
         unselectedColour = secondaryColor;
         unselectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         unselectedPaint.setColor(unselectedColour);
+    }
+
+    public void setCurrentPageIndicatorColor(int secondaryColor) {
+        selectedColour = secondaryColor;
+        selectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        selectedPaint.setColor(selectedColour);
     }
 
     @Override

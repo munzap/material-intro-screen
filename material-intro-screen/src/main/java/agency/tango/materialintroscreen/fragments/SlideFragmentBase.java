@@ -29,6 +29,11 @@ public class SlideFragmentBase extends ParallaxFragment {
         return R.color.mis_default_buttons_color;
     }
 
+    @ColorRes
+    public int buttonsRippleColor() {
+        return R.color.mis_colorPrimary;
+    }
+
     public boolean canMoveFurther() {
         return true;
     }

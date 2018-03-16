@@ -32,8 +32,9 @@ public class IntroActivity extends MaterialIntroActivity {
                 });
 
         addSlide(new SlideFragmentBuilder()
-                        .backgroundColor(R.color.first_slide_background)
-                        .buttonsColor(R.color.first_slide_buttons)
+                        .backgroundColor(R.color.welcome_screen_gray)
+                        .buttonsColor(R.color.welcome_screen_buttons_gray)
+                        .buttonsRippleColor(R.color.colorPrimary)
                         .image(R.drawable.img_office)
                         .title("Organize your time with us")
                         .description("Would you try?")

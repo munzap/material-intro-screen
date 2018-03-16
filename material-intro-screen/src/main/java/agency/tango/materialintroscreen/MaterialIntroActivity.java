@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import agency.tango.materialintroscreen.adapter.SlidesAdapter;
+import agency.tango.materialintroscreen.animations.CircleButtonRippleDrawable;
 import agency.tango.materialintroscreen.animations.ViewTranslationWrapper;
 import agency.tango.materialintroscreen.animations.wrappers.BackButtonTranslationWrapper;
 import agency.tango.materialintroscreen.animations.wrappers.NextButtonTranslationWrapper;
@@ -448,6 +449,10 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
         return getColorFromRes(adapter.getItem(position).buttonsColor());
     }
 
+    private int getButtonsRippleColor(int position) {
+        return getColorFromRes(adapter.getItem(position).buttonsRippleColor());
+    }
+
     private int getBackgroundColor(int position) {
         return getColorFromRes(adapter.getItem(position).backgroundColor());
     }
@@ -460,32 +465,42 @@ public abstract class MaterialIntroActivity extends AppCompatActivity {
                 setViewsColor(position, offset);
             } else if (adapter.getCount() == 1 || isOnLastSlide(position, offset)) {
                 viewPager.setBackgroundColor(getBackgroundColor(position));
-                messageButton.setTextColor(Color.WHITE);
+                messageButton.setTextColor(getColorFromRes(R.color.mis_messageButtonTextCollor)); // PM: Force white text color
                 pageIndicator.setPageIndicatorColor(getButtonsColor(position));
 
-                tintButtons(ColorStateList.valueOf(getButtonsColor(position)));
+                int buttonsRippleColor  = getButtonsRippleColor(position);
+
+                tintButtons(ColorStateList.valueOf(getButtonsColor(position)),buttonsRippleColor);
             }
         }
 
         private void setViewsColor(int position, float offset) {
             int backgroundColor = getBackgroundEvaluatedColor(position, offset);
             viewPager.setBackgroundColor(backgroundColor);
-            messageButton.setTextColor(Color.WHITE);
+            messageButton.setTextColor(getColorFromRes(R.color.mis_messageButtonTextCollor));
 
             int buttonsColor = getButtonsEvaluatedColor(position, offset);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(buttonsColor);
             }
+            int buttonsRippleColor  = getButtonsRippleColor(position);
+
+            pageIndicator.setCurrentPageIndicatorColor(buttonsRippleColor);
             pageIndicator.setPageIndicatorColor(buttonsColor);
 
-            tintButtons(ColorStateList.valueOf(buttonsColor));
+            tintButtons(ColorStateList.valueOf(buttonsColor),buttonsRippleColor);
         }
 
         private boolean isOnLastSlide(int position, float offset) {
             return position == adapter.getLastItemPosition() && offset == 0;
         }
 
-        private void tintButtons(ColorStateList color) {
+        private void tintButtons(ColorStateList color,int buttonsRippleColor ) {
+
+            nextButton.setBackground(CircleButtonRippleDrawable.getAdaptiveRippleDrawable(getColorFromRes(R.color.mis_colorRippleOn), buttonsRippleColor));
+            backButton.setBackground(CircleButtonRippleDrawable.getAdaptiveRippleDrawable(getColorFromRes(R.color.mis_colorRippleOn), buttonsRippleColor));
+            skipButton.setBackground(CircleButtonRippleDrawable.getAdaptiveRippleDrawable(getColorFromRes(R.color.mis_colorRippleOn), buttonsRippleColor));
+
             ViewCompat.setBackgroundTintList(nextButton, color);
             ViewCompat.setBackgroundTintList(backButton, color);
             ViewCompat.setBackgroundTintList(skipButton, color);

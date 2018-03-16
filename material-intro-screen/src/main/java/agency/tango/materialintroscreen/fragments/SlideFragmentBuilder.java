@@ -7,6 +7,7 @@ import android.support.annotation.StringRes;
 
 import static agency.tango.materialintroscreen.fragments.SlideFragment.BACKGROUND_COLOR;
 import static agency.tango.materialintroscreen.fragments.SlideFragment.BUTTONS_COLOR;
+import static agency.tango.materialintroscreen.fragments.SlideFragment.BUTTONS_RIPPLE_COLOR;
 import static agency.tango.materialintroscreen.fragments.SlideFragment.DESCRIPTION;
 import static agency.tango.materialintroscreen.fragments.SlideFragment.GRANT_PERMISSION_ERROR;
 import static agency.tango.materialintroscreen.fragments.SlideFragment.GRANT_PERMISSION_MESSAGE;
@@ -23,6 +24,9 @@ public class SlideFragmentBuilder {
 
     @ColorRes
     private int buttonsColor;
+
+    @ColorRes
+    int buttonsRippleColor;
 
     @DrawableRes
     private int image;
@@ -45,6 +49,11 @@ public class SlideFragmentBuilder {
 
     public SlideFragmentBuilder buttonsColor(@ColorRes int buttonsColor) {
         this.buttonsColor = buttonsColor;
+        return this;
+    }
+
+    public SlideFragmentBuilder buttonsRippleColor(@ColorRes int buttonsRippleColor) {
+        this.buttonsRippleColor = buttonsRippleColor;
         return this;
     }
 
@@ -100,6 +109,7 @@ public class SlideFragmentBuilder {
         Bundle bundle = new Bundle();
         bundle.putInt(BACKGROUND_COLOR, backgroundColor);
         bundle.putInt(BUTTONS_COLOR, buttonsColor);
+        bundle.putInt(BUTTONS_RIPPLE_COLOR, buttonsRippleColor);
         bundle.putInt(IMAGE, image);
         bundle.putString(TITLE, title);
         bundle.putString(DESCRIPTION, description);

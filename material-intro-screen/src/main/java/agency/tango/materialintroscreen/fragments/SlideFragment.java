@@ -18,6 +18,7 @@ public class SlideFragment extends SlideFragmentBase {
 
     public static final String BACKGROUND_COLOR = "background_color";
     public static final String BUTTONS_COLOR = "buttons_color";
+    public static final String BUTTONS_RIPPLE_COLOR = "buttons_ripple_color";
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String NEEDED_PERMISSIONS = "needed_permission";
@@ -31,6 +32,9 @@ public class SlideFragment extends SlideFragmentBase {
 
     @ColorRes
     private int buttonsColor;
+
+    @ColorRes
+    private int buttonsRippleColor;
 
     @DrawableRes
     private int image;
@@ -81,6 +85,16 @@ public class SlideFragment extends SlideFragmentBase {
     }
 
     @Override
+    @ColorRes
+    public int buttonsRippleColor() {
+
+        if(buttonsRippleColor != 0)
+            return buttonsRippleColor;
+        else
+            return  super.buttonsRippleColor();
+    }
+
+    @Override
     public String[] possiblePermissions() {
         return possiblePermissions;
     }
@@ -114,6 +128,7 @@ public class SlideFragment extends SlideFragmentBase {
         Bundle bundle = getArguments();
         backgroundColor = bundle.getInt(BACKGROUND_COLOR);
         buttonsColor = bundle.getInt(BUTTONS_COLOR);
+        buttonsRippleColor = bundle.getInt(BUTTONS_RIPPLE_COLOR);
         image = bundle.getInt(IMAGE, 0);
         title = bundle.getString(TITLE);
         description = bundle.getString(DESCRIPTION);

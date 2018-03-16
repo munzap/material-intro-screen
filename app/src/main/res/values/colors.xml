@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#6fb353</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#880E4F</color>
 
@@ -22,4 +22,6 @@
     <!--Splash Screen-->
     <item name="splash_background" type="color">@color/colorPrimary</item>
 
+    <color name="welcome_screen_buttons_gray">#464646</color>
+    <color name="welcome_screen_gray">#363636</color>
 </resources>
